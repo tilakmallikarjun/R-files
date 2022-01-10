@@ -7,6 +7,10 @@ Mallikarjun Tilak
 ##beginning of code
 ```
 
+``` r
+knitr::opts_chunk$set(fig.path='Figs/')
+```
+
 ## R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax
@@ -101,6 +105,11 @@ library(xgboost)
     ## The following object is masked from 'package:dplyr':
     ## 
     ##     slice
+
+``` r
+library(knitr)
+opts_chunk$set(dev="png")
+```
 
 Loading the data and checking for null or NA values
 
@@ -279,22 +288,22 @@ df %>%
   geom_text(aes(label = n), vjust = -0.5, position = position_dodge(0.9))
 ```
 
-![](employee-attrition-rmd_files/figure-gfm/plot1-1.png)<!-- -->
+![](Figs/plot1-1.png)<!-- -->
 
 ``` r
 ## variation of attrition with age
 ggplot(data=df, aes(Age))+ geom_histogram(breaks=seq(20, 50, by=2),  col="red", aes(fill=..count..))+labs(x="Age", y="Count")
 ```
 
-![](employee-attrition-rmd_files/figure-gfm/plot2-1.png)<!-- -->
+![](Figs/plot2-1.png)<!-- -->
 
 ``` r
 ## variation of attrition by quarterly rating
 ggplot(df,aes(x=Quarterly.Rating,fill=attrition),inherit.aes = FALSE)+geom_bar()
 ```
 
-![](employee-attrition-rmd_files/figure-gfm/plot2-2.png)<!-- --> ##
-variation of attrition w.r.t. education and income
+![](Figs/plot2-2.png)<!-- --> ## variation of attrition w.r.t. education
+and income
 
 ``` r
 avg.income<-df %>% select(Education_Level, Salary, attrition)%>% group_by(Education_Level, attrition) %>% summarize(avg.inc=mean(Salary))%>%
@@ -314,7 +323,7 @@ ggplot(aes(x=reorder(Education_Level, avg.inc), y=avg.inc, fill=attrition)) + ge
 avg.income
 ```
 
-![](employee-attrition-rmd_files/figure-gfm/correlogram-1.png)<!-- -->
+![](Figs/correlogram-1.png)<!-- -->
 
 ``` r
 options(repr.plot.width=10, repr.plot.height=7) 
@@ -331,8 +340,7 @@ ggcorrplot(corr,
            ggtheme=theme_minimal())
 ```
 
-![](employee-attrition-rmd_files/figure-gfm/correlogram-2.png)<!-- -->
-## Remove unwanted colum
+![](Figs/correlogram-2.png)<!-- --> ## Remove unwanted colum
 
 ``` r
 ## Remove unwanted columns
@@ -391,7 +399,7 @@ model <- xgboost(data = dtrain, # the data
                  objective = "binary:logistic")
 ```
 
-    ## [14:08:33] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+    ## [15:03:00] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
     ## [1]  train-logloss:0.594290 
     ## [2]  train-logloss:0.538056 
     ## [3]  train-logloss:0.503478 
@@ -445,7 +453,7 @@ ggplot(data =  conf_df, mapping = aes(x = predictions, y = Var1)) +
   labs(title="Confusion Matrix", y="Attrition Status", x="Predictions")
 ```
 
-![](employee-attrition-rmd_files/figure-gfm/cnfmatrix-1.png)<!-- -->
+![](Figs/cnfmatrix-1.png)<!-- -->
 
 ``` r
 test$Target<-predictions
