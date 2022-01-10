@@ -3,6 +3,10 @@ Employee attrition
 Mallikarjun Tilak
 1/9/2022
 
+``` r
+##beginning of code
+```
+
 ## R Markdown
 
 This is an R Markdown document. Markdown is a simple formatting syntax
@@ -387,7 +391,7 @@ model <- xgboost(data = dtrain, # the data
                  objective = "binary:logistic")
 ```
 
-    ## [13:51:10] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
+    ## [14:08:33] WARNING: amalgamation/../src/learner.cc:1115: Starting in XGBoost 1.3.0, the default evaluation metric used with the objective 'binary:logistic' was changed from 'error' to 'logloss'. Explicitly set eval_metric if you'd like to restore the old behavior.
     ## [1]  train-logloss:0.594290 
     ## [2]  train-logloss:0.538056 
     ## [3]  train-logloss:0.503478 
