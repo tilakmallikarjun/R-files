@@ -1,0 +1,27 @@
+---
+title: "Untitled"
+author: "TC"
+date: "10/30/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.path="testit/")
+```
+
+## R Markdown
+
+https://stackoverflow.com/questions/58598873/r-notebook-markdown-does-not-save-chunk-plots-using-fig-path-chunk-option
+
+```{r pressure, echo=TRUE}
+plot(pressure)
+```
+
+```{r pressure2, echo=TRUE}
+plot(pressure)
+```
+
+
+```{r echo=FALSE}
+plot(pressure)
+```
